@@ -1,4 +1,7 @@
 var key = "fbd2af66198a82a227ecee84f163f688";
+
+var cityList =$("#cities");
+var cities = [];
 //Function to fetch API Weather 
   
 function getWeather(cityName){
@@ -108,3 +111,75 @@ function getWeather(cityName){
     });
     
   }
+
+
+
+//Function displayCities()
+function displayCities() {
+    cityList.empty();
+    
+    // add a new list item for each city
+    for (var i = 0; i < cities.length; i++) {
+      var city = cities[i];
+      
+      var listItem = $("<li>").text(city);
+      listItem.attr("id","listC");
+      listItem.attr("data-city", city);
+      listItem.attr("class", "list-group-item");
+    //   console.log(listItem);
+      cityList.append(listItem);
+    }
+    //Get Response weather for the first city only
+    if (!city){
+        return
+    } 
+    else{
+        getWeather(city)
+    };
+}   
+
+  //event listener for search button
+  $("#add-city").on("click", function(event){
+      event.preventDefault();
+
+    var city = $("#city-input").val().trim();
+    
+    if (city === "") {
+        return;
+    }
+    cities.push(city);
+        storeCities();
+        displayCities();
+  });
+  //getting cities from local storage
+getCities();
+
+function getCities(){
+    var storedCities = JSON.parse(localStorage.getItem("cities"));
+
+    if (storedCities !== null) {
+        cities = storedCities;
+      }
+    displayCities();
+    // console.log(cities);
+}
+
+//store searched cities in local storage
+function storeCities(){
+  localStorage.setItem("cities", JSON.stringify(cities));
+//   console.log(localStorage);
+}
+
+//Formatting dates
+function dayFormat(date){
+    var date = new Date();
+    console.log(date);
+    var month = date.getMonth()+1;
+    var day = date.getDate();
+    
+    var dateLayout = date.getFullYear() + '/' +
+        (month<10 ? '0' : '') + month + '/' +
+        (day<10 ? '0' : '') + day;
+    return dateLayout;
+}
+
