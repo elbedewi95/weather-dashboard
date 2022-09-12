@@ -76,7 +76,7 @@ function getWeather(cityName){
                 var read_date = response3.list[i].dt;
                 if(response3.list[i].dt != response3.list[i+1].dt){
                     var fiveDays = $("<div>");
-                    fiveDays.attr("class","col-3 m-2 bg-primary")
+                    fiveDays.attr("class","row-1 m-3 bg-primary")
                     var d = new Date(0);
                     d.setUTCSeconds(read_date);
                     var date = d;
@@ -102,11 +102,13 @@ function getWeather(cityName){
                     var tempK = response3.list[i].main.temp;
                     console.log(skyconditions);
                     var tempToNum = parseInt((tempK)* 9/5 - 459);
-                    var pTemperature = $("<p>").text("Temperature: "+ tempToNum + " °F");
+                    var pTemperature = $("<p>").text("Temp: "+ tempToNum + " °F");
                     var pHumidity = $("<p>").text("Humidity: "+ response3.list[i].main.humidity + " %");
+                    var cityWindSpeed5D = $("<p>").text("Wind: "+ response.wind.speed + " MPH");
                     fiveDays.append(cardDate);
                     fiveDays.append(imgEl);
                     fiveDays.append(pTemperature);
+                    fiveDays.append(cityWindSpeed5D);
                     fiveDays.append(pHumidity);
                     $("#boxes").append(fiveDays);
                     j++;
