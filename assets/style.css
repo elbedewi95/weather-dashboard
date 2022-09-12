@@ -13,3 +13,16 @@
 #yellow{
     background-color: yellow;
 }
+.my-card{
+    
+    font-size: 13px;
+    padding: 12px;
+    justify-content: center;
+    background-color: rgb(43, 121, 173);
+}
+#boxes{
+    margin: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}

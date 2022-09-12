@@ -69,14 +69,14 @@ function getWeather(cityName){
         }).then(function(response3) { 
             $("#boxes").empty();
             console.log(response3);
-            for(var i=0, j=0; j<5; i=i+8){
+            for(var i=0, j=0; j<=5; i=i+8){
                 console.log(i);
                 console.log(j);
                 console.log(response3);
                 var read_date = response3.list[i].dt;
                 if(response3.list[i].dt != response3.list[i+1].dt){
                     var fiveDays = $("<div>");
-                    fiveDays.attr("class","row-1 m-3 bg-primary")
+                    fiveDays.attr("class","my-card row-1 m-2 ")
                     var d = new Date(0);
                     d.setUTCSeconds(read_date);
                     var date = d;
