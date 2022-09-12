@@ -69,7 +69,10 @@ function getWeather(cityName){
         }).then(function(response3) { 
             $("#boxes").empty();
             console.log(response3);
-            for(var i=0, j=0; j<=5; i=i+6){
+            for(var i=0, j=0; j<5; i=i+8){
+                console.log(i);
+                console.log(j);
+                console.log(response3);
                 var read_date = response3.list[i].dt;
                 if(response3.list[i].dt != response3.list[i+1].dt){
                     var fiveDays = $("<div>");
@@ -83,6 +86,7 @@ function getWeather(cityName){
                     var dateLayout = (month<10 ? '0' : '') + month + '/' +
                     (day<10 ? '0' : '') + day + '/' +
                         date.getFullYear() ;
+                        console.log(dateLayout);
                     var cardDate = $("<h6>").text(dateLayout);
                     //get icons
                     var imgEl = $("<img>");
@@ -188,3 +192,8 @@ function dayFormat(date){
     return dateLayout;
 }
 
+ //Click function to each Li 
+ $(document).on("click", "#listC", function() {
+    var listCity = $(this).attr("data-city");
+    getWeather(listCity);
+  });
