@@ -72,17 +72,17 @@ function getWeather(cityName){
             for(var i=0, j=0; j<=5; i=i+6){
                 var read_date = response3.list[i].dt;
                 if(response3.list[i].dt != response3.list[i+1].dt){
-                    var FivedayDiv = $("<div>");
-                    FivedayDiv.attr("class","col-3 m-2 bg-primary")
+                    var fiveDays = $("<div>");
+                    fiveDays.attr("class","col-3 m-2 bg-primary")
                     var d = new Date(0);
                     d.setUTCSeconds(read_date);
                     var date = d;
                     console.log(date);
                     var month = date.getMonth()+1;
                     var day = date.getDate();
-                    var dateLayout = date.getFullYear() + '/' +
-                    (month<10 ? '0' : '') + month + '/' +
-                    (day<10 ? '0' : '') + day;
+                    var dateLayout = (month<10 ? '0' : '') + month + '/' +
+                    (day<10 ? '0' : '') + day + '/' +
+                        date.getFullYear() ;
                     var cardDate = $("<h6>").text(dateLayout);
                     //get icons
                     var imgEl = $("<img>");
@@ -95,16 +95,16 @@ function getWeather(cityName){
                         imgEl.attr("src", "https://img.icons8.com/color/48/000000/rain.png")
                     }
 
-                    var pTemperatureK = response3.list[i].main.temp;
+                    var tempK = response3.list[i].main.temp;
                     console.log(skyconditions);
-                    var tempToNum = parseInt((pTemperatureK)* 9/5 - 459);
+                    var tempToNum = parseInt((tempK)* 9/5 - 459);
                     var pTemperature = $("<p>").text("Temperature: "+ tempToNum + " °F");
                     var pHumidity = $("<p>").text("Humidity: "+ response3.list[i].main.humidity + " %");
-                    FivedayDiv.append(cardDate);
-                    FivedayDiv.append(imgEl);
-                    FivedayDiv.append(pTemperature);
-                    FivedayDiv.append(pHumidity);
-                    $("#boxes").append(FivedayDiv);
+                    fiveDays.append(cardDate);
+                    fiveDays.append(imgEl);
+                    fiveDays.append(pTemperature);
+                    fiveDays.append(pHumidity);
+                    $("#boxes").append(fiveDays);
                     j++;
                 }
             
@@ -182,9 +182,9 @@ function dayFormat(date){
     var month = date.getMonth()+1;
     var day = date.getDate();
     
-    var dateLayout = date.getFullYear() + '/' +
-        (month<10 ? '0' : '') + month + '/' +
-        (day<10 ? '0' : '') + day;
+    var dateLayout = (month<10 ? '0' : '') + month + '/' +
+                        (day<10 ? '0' : '') + day + '/' +
+                            date.getFullYear() ;
     return dateLayout;
 }
 
