@@ -38,21 +38,26 @@ function getWeather(cityName){
             var cityUVp = $("<p>").text("UV Index: ");
             cityUVp.append(cityUV);
             $("#today-weather").append(cityUVp);
-            console.log(typeof response2.value);
+            // console.log( response2.value);
             if(response2.value > 0 && response2.value <=2){
-                cityUV.attr("class","green")
+                cityUV.attr("id","green")
+                console.log( response2.value);
             }
             else if (response2.value > 2 && response2.value <= 5){
-                cityUV.attr("class","yellow")
+                cityUV.attr("id","yellow")
+                console.log( response2.value);
             }
             else if (response2.value >5 && response2.value <= 7){
-                cityUV.attr("class","orange")
+                cityUV.attr("id","orange")
+                console.log( response2.value);
             }
             else if (response2.value >7 && response2.value <= 10){
-                cityUV.attr("class","red")
+                cityUV.attr("id","red")
+                console.log( response2.value);
             }
             else{
-                cityUV.attr("class","purple")
+                cityUV.attr("id","purple")
+                console.log( response2.value);
             }
         });
     
